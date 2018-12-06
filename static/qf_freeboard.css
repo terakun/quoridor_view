@@ -1,0 +1,209 @@
+/*
+qf_freeboard.css
+Copyright (c) 2014 Quoridor Fansite Webmaster
+Released under the MIT license
+http://opensource.org/licenses/mit-license.php
+*/
+
+.qf_freeboard {
+	position: relative;
+}
+
+.qf_freeboard div, .qf_freeboard button, .qf_freeboard textarea {
+	margin: 0;
+	padding: 0;
+}
+
+.qf_gameboard {
+	background-color: #B0A092;
+	position: absolute;
+	border-radius: 5%;
+
+	transition: all 1s ease 0s;
+}
+.qf_boardInversed {
+	-webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	transform: rotate(180deg);
+}
+
+.qf_char {
+	position: absolute;
+	text-align: center;
+	color: #534B44;
+}
+
+.qf_inner_gameboard {
+	position: absolute;
+}
+
+.qf_board_grid {
+	background-color: #A18E80;
+	position: absolute;
+	border-radius: 5%;
+}
+.qf_board_grid2 {
+	position: absolute;
+}
+.qf_board_space {
+	position: absolute;
+}
+.qf_board_hspace {
+}
+.qf_board_vspace {
+}
+
+.qf_piece {
+	position: absolute;
+	border-radius: 50%;
+}
+.qf_piece_white {
+	background-color: #F7F2EE;
+	transition: all 0.1s ease 0s;
+}
+.qf_piece_black {
+	background-color: #534B44;
+	transition: all 0.1s ease 0s;
+}
+.qf_piece_white2 {
+	background-color: rgba(247, 242, 238, 0.6);
+}
+.qf_piece_black2 {
+	background-color: rgba(83, 75, 68, 0.6);
+}
+
+.qf_wall {
+	position: absolute;
+}
+.qf_wwall {
+	background-color: #F7F2EE;
+	transition: all 0.2s ease 0s;
+}
+.qf_bwall {
+	background-color: #534B44;
+	transition: all 0.2s ease 0s;
+}
+.qf_wwall2 {
+	background-color: rgba(247, 242, 238, 0.6);
+}
+.qf_bwall2 {
+	background-color: rgba(83, 75, 68, 0.6);
+}
+.qf_hwall {
+	border-radius: 5% / 20%;
+}
+.qf_vwall {
+	border-radius: 20% / 5%;
+}
+
+.qf_infobar {
+	position: absolute;
+	border-bottom: solid #948073;
+}
+.qf_info_text {
+	position: absolute;
+	text-align: center;
+	color: #534B44;
+}
+.qf_info_turn {
+}
+.qf_info_white {
+}
+.qf_info_black {
+}
+.qf_info_text_num {
+	position: absolute;
+	text-align: center;
+	color: #534B44;
+}
+.qf_info_turn_num {
+}
+.qf_info_white_num {
+}
+.qf_info_black_num {
+}
+
+
+.qf_controlpanel {
+	position: absolute;
+}
+.qf_control_button {
+	position: absolute;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	
+	color: #F7F2EE;
+	text-align: center;
+
+	border-radius: 7% / 14%;
+}
+.qf_b_back, .qf_b_next, .qf_b_reset{
+	background-color: #D76969;
+}
+.qf_b_back:hover, .qf_b_next:hover, .qf_b_reset:hover{
+	background-color: #E17878;
+}
+.qf_b_back:active, .qf_b_next:active, .qf_b_reset:active{
+	background-color: #EB8484;
+}
+.qf_b_inverse, .qf_b_lastmove, .qf_b_gray {
+	background-color: #D78F69;
+}
+.qf_b_inverse:hover, .qf_b_lastmove:hover, .qf_b_gray:hover {
+	background-color: #E19D78;
+}
+.qf_b_inverse:active, .qf_b_lastmove:active, .qf_b_gray:active {
+	background-color: #E6A581;
+}
+.qf_b_snap, .qf_b_record, .qf_b_input {
+	background-color: #D7AB69;
+}
+.qf_b_snap:hover, .qf_b_record:hover, .qf_b_input:hover {
+	background-color: #DFB576;
+}
+.qf_b_snap:active, .qf_b_record:active, .qf_b_input:active {
+	background-color: #E6BE83;
+}
+.qf_cb_cover {
+	cursor: default;
+	background-color: rgba(245, 243, 232, 0.8);
+	border-radius: 6% / 12%;
+}
+.qf_b_record_on {
+	background-color: #D76969;
+}
+.qf_b_record_on:hover{
+	background-color: #E17878;
+}
+.qf_b_record_on:active{
+	background-color: #EB8484;
+}
+
+
+.qf_textfield {
+	position: absolute;
+}
+.qf_textarea {
+	position: absolute;
+	border: 1px solid #B0A092;
+	border-radius: 1% / 12%;
+	outline: none;
+}
+.qf_textarea:focus {
+	border-color: #D76969;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 4px rgba(239, 86, 86, 0.6);
+}
+
+
+.qf_highlighted {
+	border-color: #EB5454;
+}
+.qf_gwall {
+	background-color: #5E564F;
+}
+.qf_gwall2 {
+	background-color: rgba(94, 86, 79, 0.6);
+}

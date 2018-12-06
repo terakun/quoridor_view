@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Quoridor Viewer</title>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../quoridor/qf_board_viewer.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../quoridor/viewer2.js"></script>
+</head>
+<body>
+    <div class="qf_board_viewer" data-boardsize="9" data-flags="7" data-qfcode="{{qfcode}}"></div>
+
+</body>
+</html>
