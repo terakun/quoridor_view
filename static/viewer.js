@@ -63,6 +63,14 @@ function onMessage(event) {
   }
 }
 
+function undo() {
+  if (webSocket) {
+    console.log("undo");
+    webSocket.send("undo");
+  }
+}
+
+
 function press(event) {
   if (event && event.which == 13) {
     let message = $("[data-name='message']").val();
