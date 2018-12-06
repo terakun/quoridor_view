@@ -1,4 +1,8 @@
 ## 使い方
-`http://ipアドレス:8000/quoridor/view.html`
+```
+$ cargo run
+```
+
+`http://ipアドレス:8000/quoridor/view.html`にアクセス
 
 
