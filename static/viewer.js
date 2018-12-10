@@ -1,6 +1,34 @@
 let host = location.host.split(':')[0];
-let uri = "ws://" + host + ":3012/";
+let id = location.pathname.split("/").slice(-2)[0]
+let wsport = 0;
+let scport = 0;
+let uri = "";
 let webSocket = null;
+
+let request = new XMLHttpRequest();
+let info_uri = "http://"+location.host+"/roominfo/"+id;
+request.open('GET', info_uri);
+request.onreadystatechange = function () {
+  if (request.readyState != 4) {
+    // リクエスト中
+  } else if (request.status != 200) {
+    // 失敗
+    elem_login.innerText = "";
+    elem_id.innerText = "";
+    elem_name.innerText = "";
+    elem_bio.innerText = ""; 
+  } else {
+    let result = request.responseText;
+    const info = JSON.parse(result);
+    wsport = info.wsport;
+    scport = info.scport;
+    let elem_port = document.getElementById("port");
+    elem_port.innerHTML = "WebSocket:"+wsport+",Socket:"+scport;
+    uri = "ws://" + host + ":"+wsport+"/";
+  }
+};
+// request.responseType = 'json';
+request.send(null);
 
 function init() {
   $("[data-name='message']").keypress(press);
@@ -28,18 +56,18 @@ function init() {
       }
     }
   }
-
-
-  open();
 }
 
-function open() {
+function open_socket() {
+  console.log("open");
   if (webSocket == null) {
     webSocket = new WebSocket(uri);
     webSocket.onopen = onOpen;
     webSocket.onmessage = onMessage;
     webSocket.onclose = onClose;
     webSocket.onerror = onError;
+    let btn = document.getElementById("connection");
+    btn.disabled = true;
   }
 }
 
@@ -90,7 +118,7 @@ function onError(event) {
 function onClose(event) {
   // chat("切断しました。3秒後に再接続します。(" + event.code + ")");
   webSocket = null;
-  setTimeout("open()", 3000);
+  setTimeout("open_socket()", 3000);
 }
 
 function chat(message) {

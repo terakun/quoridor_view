@@ -12,7 +12,10 @@
 </head>
 <body>
     <div id="board" class="qf_board_viewer" data-boardsize="7" data-flags="7" data-qfcode="gkwAAAAQ"></div>
+    <button id="connection" onclick="open_socket()">接続する</button>
     <input type="button" value="undo" onclick="undo()"/>
+    <br />
+    <p id="port"></p>
     <hr />
     <div data-name="chat"></div>
 
