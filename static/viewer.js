@@ -94,7 +94,7 @@ function onMessage(event) {
 function undo() {
   if (webSocket) {
     console.log("undo");
-    webSocket.send("undo");
+    webSocket.send("mesg:undo");
   }
 }
 
@@ -104,7 +104,7 @@ function press(event) {
     let message = $("[data-name='message']").val();
     console.log("'"+message+"'");
     if (message && webSocket) {
-      webSocket.send(message);
+      webSocket.send("mesg:"+message);
       $("[data-name='message']").val("");
     }
   }

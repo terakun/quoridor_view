@@ -4,7 +4,9 @@
 extern crate rocket;
 #[macro_use]
 extern crate rocket_contrib;
+#[macro_use]
 extern crate serde_derive;
+extern crate toml;
 
 use rocket::State;
 use rocket_contrib::Template;
@@ -14,7 +16,8 @@ use std::collections::HashMap;
 
 use std::path::{Path, PathBuf};
 use std::fs::File;
-use std::io::Read;
+use std::fs;
+use std::io::{BufReader, Read};
 use std::sync::{Arc, Mutex};
 use std::process::{Child, Command};
 
@@ -99,9 +102,39 @@ fn history(file: PathBuf) -> Template {
     Template::render("history", &context)
 }
 
+#[derive(Debug, Deserialize)]
+struct Config {
+    development: Option<Development>,
+}
+#[derive(Debug, Deserialize)]
+struct Development {
+    address: String,
+    port: usize,
+}
+
+fn read_file(path: String) -> Result<String, String> {
+    let mut file_content = String::new();
+
+    let mut fr = fs::File::open(path)
+        .map(|f| BufReader::new(f))
+        .map_err(|e| e.to_string())?;
+
+    fr.read_to_string(&mut file_content)
+        .map_err(|e| e.to_string())?;
+
+    Ok(file_content)
+}
 fn main() {
+    let s = match read_file("./Rocket.toml".to_owned()) {
+        Ok(s) => s,
+        Err(e) => panic!("fail to read file: {}", e),
+    };
+    println!("{}", s);
+
+    let config: Config = toml::from_str(&s).ok().unwrap();
+
     let mut state = Arc::new(Mutex::new(Service {
-        ip: "127.0.0.1".to_string(),
+        ip: config.development.unwrap().address.to_string(),
         children: vec![(3012, 8080, None), (3013, 8081, None), (3014, 8082, None)],
     }));
 
