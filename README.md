@@ -1,4 +1,11 @@
 ## 使い方
+[ジャッジサーバのプロジェクト](https://github.com/terakun/quoridor_judge)をビルドして同じディレクトリに置いておく．
+```
+workspace/
+  quoridor_judge/
+  quoridor_view/
+```
+
 ```
 $ cargo run
 ```
