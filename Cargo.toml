@@ -4,14 +4,14 @@ version = "0.1.0"
 authors = ["Terasaki Shun <t.tera1217@gmail.com>"]
 
 [dependencies]
-rocket = "*"
-rocket_codegen ="*"
+rocket = "0.4.0"
+rocket_codegen ="0.4.0"
 serde = "*"
 serde_json = "*"
 serde_derive = "*"
 toml = "0.4"
 
 [dependencies.rocket_contrib]
-version = "*"
+version = "0.4.0"
 default-features = false
 features = ["handlebars_templates", "tera_templates","json"]

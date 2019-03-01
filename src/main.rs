@@ -1,6 +1,5 @@
-#![feature(plugin)]
-#![plugin(rocket_codegen)]
-
+#![feature(proc_macro_hygiene, decl_macro, plugin)]
+#[macro_use]
 extern crate rocket;
 #[macro_use]
 extern crate rocket_contrib;
@@ -9,8 +8,8 @@ extern crate serde_derive;
 extern crate toml;
 
 use rocket::State;
-use rocket_contrib::Template;
-use rocket_contrib::Json;
+use rocket_contrib::templates::Template;
+use rocket_contrib::json::Json;
 use rocket::response::{NamedFile, Redirect};
 use std::collections::HashMap;
 
@@ -67,7 +66,7 @@ fn boot(state: State<Arc<Mutex<Service>>>) -> Redirect {
     }
 
     if let Some(id) = new_id {
-        Redirect::to(&format!("/room/{}/view.html", id))
+        Redirect::to(format!("/room/{}/view.html", id))
     } else {
         Redirect::to("/")
     }
@@ -78,17 +77,23 @@ fn room(id: usize, file: PathBuf) -> Option<NamedFile> {
     NamedFile::open(Path::new("static/").join(file)).ok()
 }
 
+#[derive(Serialize, Deserialize)]
+struct RoomInfo {
+    wsport: String,
+    scport: String,
+}
+
 #[get("/roominfo/<id>")]
-fn roominfo(id: usize, state: State<Arc<Mutex<Service>>>) -> Option<Json> {
+fn roominfo(id: usize, state: State<Arc<Mutex<Service>>>) -> Option<Json<RoomInfo>> {
     let mut state = state.lock().unwrap();
     if state.children.len() <= id {
         return None;
     }
     let (wsport, scport, _) = state.children[id];
-    Some(Json(json!({
-        "wsport": wsport.to_string(),
-        "scport": scport.to_string()
-    })))
+    Some(Json(RoomInfo {
+        wsport: wsport.to_string(),
+        scport: scport.to_string(),
+    }))
 }
 
 #[get("/history/<file..>")]
