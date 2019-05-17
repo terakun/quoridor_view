@@ -71,6 +71,16 @@ function open_socket() {
   }
 }
 
+function boot_ai() {
+  $.ajax({
+    type: "POST",
+    url: "/boot_ai",
+    success: function(j_data){
+      console.log("boot succeeded");
+    }
+  });
+}
+
 function onOpen(event) {
   chat("Connected.");
 }

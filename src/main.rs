@@ -40,6 +40,18 @@ fn boot_quoridor_judge(ip: &String, wsport: usize, scport: usize) -> Child {
         .expect("failed to execute process")
 }
 
+#[post("/boot_ai")]
+fn boot_ai() {
+    let _ = Command::new("python")
+        .arg("../quoridor/main_socket.py")
+        .arg("--ai_mode")
+        .arg("r")
+        .stdout(std::process::Stdio::null())
+        .spawn()
+        .expect("failed to execute process");
+    println!("boot succeed");
+}
+
 #[post("/boot")]
 fn boot(state: State<Arc<Mutex<Service>>>) -> Redirect {
     let mut state = state.lock().unwrap();
