@@ -11,3 +11,5 @@ $ cargo run
 ```
 
 `http://ipアドレス:8000/quoridor/view.html`にアクセス
+
+![Imgur](https://i.imgur.com/3gaUMzR.png)
